@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로고 테스트</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            padding: 2rem;
+        }
+        .test-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .logo-box {
+            width: 280px;
+            height: 140px;
+            background: white;
+            border: 2px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .logo-label {
+            color: white;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white;">로고 로딩 테스트</h1>
+
+    <div class="test-container">
+        <div>
+            <div class="logo-box">
+                <img src="logos/microsoft.png" alt="Microsoft">
+            </div>
+            <div class="logo-label">Microsoft</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/google.png" alt="Google">
+            </div>
+            <div class="logo-label">Google</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/samsung-sds.png" alt="Samsung SDS">
+            </div>
+            <div class="logo-label">Samsung SDS</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/postech.png" alt="POSTECH">
+            </div>
+            <div class="logo-label">POSTECH</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/kaia.png" alt="KAIA">
+            </div>
+            <div class="logo-label">한국인공지능협회</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/hyundai-motor-chung.png" alt="Hyundai">
+            </div>
+            <div class="logo-label">현대차정몽구재단</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/donga-science.png" alt="Donga Science">
+            </div>
+            <div class="logo-label">동아사이언스</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/creverse.png" alt="Creverse">
+            </div>
+            <div class="logo-label">크레버스</div>
+        </div>
+
+        <div>
+            <div class="logo-box">
+                <img src="logos/lchaim.png" alt="Lchaim">
+            </div>
+            <div class="logo-label">르하임</div>
+        </div>
+    </div>
+
+    <script>
+        // 각 이미지의 로딩 상태 확인
+        document.querySelectorAll('img').forEach((img, index) => {
+            img.addEventListener('load', () => {
+                console.log(`✅ 이미지 ${index + 1} 로드 성공: ${img.src}`);
+            });
+            img.addEventListener('error', () => {
+                console.error(`❌ 이미지 ${index + 1} 로드 실패: ${img.src}`);
+                img.parentElement.style.background = '#ff0000';
+                img.parentElement.innerHTML += '<p style="color: white; font-size: 12px;">로드 실패</p>';
+            });
+        });
+    </script>
+</body>
+</html>

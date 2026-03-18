@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레퍼런스 - LEAN AI</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* 헤더 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 5vw;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffffff;
+        }
+
+        /* 메인 콘텐츠 */
+        main {
+            padding-top: 8rem;
+            min-height: 100vh;
+            padding-bottom: 5rem;
+        }
+
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5vw;
+        }
+
+        .portfolio-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .portfolio-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .portfolio-subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        /* 탭 메뉴 */
+        .tab-section {
+            margin-bottom: 4rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            position: relative;
+            bottom: -2px;
+        }
+
+        .tab-btn:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .tab-btn.active {
+            color: #ffffff;
+            border-bottom-color: #06279E;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 수상경력 타임라인 */
+        .awards-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .award-group {
+            margin-bottom: 3rem;
+            border-left: 3px solid rgba(6, 39, 158, 0.3);
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .award-group::before {
+            content: '';
+            position: absolute;
+            left: -7.5px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: #06279E;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(6, 39, 158, 0.2);
+        }
+
+        .award-year-header {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #06279E;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .award-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .award-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .award-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(6, 39, 158, 0.3);
+            transform: translateX(8px);
+        }
+
+        .award-badge {
+            flex-shrink: 0;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .award-badge.highlight {
+            background: #06279E;
+            color: #ffffff;
+        }
+
+        .award-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        .award-item-note {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            padding: 0.8rem 1.5rem;
+        }
+
+        /* 포트폴리오 그리드 */
+        .portfolio-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(6, 39, 158, 0.5);
+            box-shadow: 0 20px 50px rgba(6, 39, 158, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 2rem;
+        }
+
+        @media (min-width: 769px) {
+            .project-card {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .project-image {
+                width: 300px;
+                min-width: 300px;
+                height: auto;
+                min-height: 200px;
+            }
+
+            .project-content {
+                flex: 1;
+            }
+        }
+
+        .project-image-placeholder {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(6, 39, 158, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #06279E;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .project-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-year {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+        }
+
+        /* 푸터 */
+        .footer {
+            background: #050505;
+            color: #ffffff;
+            padding: 5rem 5vw 2rem;
+            margin-top: 8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #06279E;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .portfolio-grid {
+                gap: 2rem;
+            }
+
+            .project-card {
+                flex-direction: column;
+            }
+
+            .project-image {
+                width: 100%;
+                height: 250px;
+            }
+
+            .tab-section {
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* 모바일 메뉴 */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .award-group {
+                padding-left: 1.5rem;
+            }
+
+            .award-year-header {
+                font-size: 1.4rem;
+            }
+
+            .award-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+
+            .award-name {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">LEAN AI</a>
+            <nav id="mainNav">
+                <a href="portfolio.html" class="active">포트폴리오</a>
+                <a href="index.html#ax">AX</a>
+                <a href="index.html#mvp">MVP 개발</a>
+                <a href="#contact">문의하기</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main>
+        <div class="portfolio-container">
+            <div class="portfolio-header">
+                <h1 class="portfolio-title">프로젝트 레퍼런스</h1>
+                <p class="portfolio-subtitle">LEAN AI가 진행한 다양한 프로젝트를 확인해보세요</p>
+            </div>
+
+            <!-- 탭 메뉴 -->
+            <div class="tab-section">
+                <button class="tab-btn active" onclick="showTab('projects')">프로젝트</button>
+                <button class="tab-btn" onclick="showTab('awards')">수상경력</button>
+            </div>
+
+            <!-- 프로젝트 섹션 -->
+            <div id="projects" class="tab-content active">
+            <div class="portfolio-grid">
+                <!-- 프로젝트 카드 1 - Microsoft -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="logos/microsoft.png" alt="Microsoft">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">AI</span>
+                        </div>
+                        <h3 class="project-title">Microsoft</h3>
+                        <p class="project-desc">교육/지식 특화 sLLM 구축 플랫폼 구축</p>
+                        <p class="project-year">2025</p>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 카드 2 - 크레버스 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="logos/creverse.png" alt="크레버스">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">Web App</span>
+                        </div>
+                        <h3 class="project-title">크레버스</h3>
+                        <p class="project-desc">프로젝트 설명이 들어갈 자리입니다.</p>
+                        <p class="project-year">2025</p>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 카드 3 - Samsung SDS -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="logos/samsung-sds.png" alt="Samsung SDS">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">AI</span>
+                        </div>
+                        <h3 class="project-title">Samsung SDS</h3>
+                        <p class="project-desc">이미지 기반 AI 직무교육</p>
+                        <p class="project-year">2025</p>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 카드 4 - 동아사이언스 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="logos/donga-science.png" alt="동아사이언스">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">AI</span>
+                        </div>
+                        <h3 class="project-title">동아사이언스</h3>
+                        <p class="project-desc">글로벌 교육과정 맞춤 과학/수학 탐구 콘텐츠 AI 개발</p>
+                        <p class="project-year">2025</p>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 카드 5 - 르하임 스터디카페 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="logos/lchaim.png" alt="르하임 스터디카페">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tag">AI</span>
+                        </div>
+                        <h3 class="project-title">르하임 스터디카페</h3>
+                        <p class="project-desc">AI 기반 입시 컨설팅 기술 도입</p>
+                        <p class="project-year">2025</p>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+            <!-- 수상경력 섹션 -->
+            <div id="awards" class="tab-content">
+                <div class="awards-timeline">
+
+                    <!-- 2024-2025 -->
+                    <div class="award-group">
+                        <div class="award-year-header">2024 - 2025</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge">선정</div>
+                                <h4 class="award-name">정보통신산업진흥원 산업맞춤형 혁신바우처사업 공급기업</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge highlight">최우수</div>
+                                <h4 class="award-name">2024년 글로벌 기업 협업 프로그램 (Microsoft 협업)</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2023-2025 -->
+                    <div class="award-group">
+                        <div class="award-year-header">2023 - 2025</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge">선정</div>
+                                <h4 class="award-name">정보통신산업진흥원 사물인공지능 지원사업 공급기업</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">선정</div>
+                                <h4 class="award-name">창업도약패키지 지원사업 (포스텍 인공지능연구원)</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2021-2025 -->
+                    <div class="award-group">
+                        <div class="award-year-header">2021 - 2025</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge">선정</div>
+                                <h4 class="award-name">한국데이터산업진흥원 데이터바우처 지원사업 공급기업</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">선정</div>
+                                <h4 class="award-name">중소벤처기업부 비대면바우처 지원사업 공급기업</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2020 -->
+                    <div class="award-group">
+                        <div class="award-year-header">2020</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge highlight">대상</div>
+                                <h4 class="award-name">4IR Awards AI부문 대상</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge highlight">최우수</div>
+                                <h4 class="award-name">제 3회 서울혁신챌린지 최우수상 (1등)</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2019 -->
+                    <div class="award-group">
+                        <div class="award-year-header">2019</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge">우수상</div>
+                                <h4 class="award-name">산업자동화 스타트업 창업경진대회 (2등)</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2018 -->
+                    <div class="award-group">
+                        <div class="award-year-header">2018</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge highlight">최우수</div>
+                                <h4 class="award-name">고려대 SW중심대학 창업경진대회</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">현장상</div>
+                                <h4 class="award-name">SW사장성테스트 지원사업 NIPA (SW부문)</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2017 -->
+                    <div class="award-group">
+                        <div class="award-year-header">2017</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge highlight">장관상</div>
+                                <h4 class="award-name">대학창업유망팀 300 시제품전시회 교육부장관상 (1등)</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge highlight">최우수</div>
+                                <h4 class="award-name">미래에셋대우 청년창업지원 프로젝트 (1등)</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 기타 인증 및 선정 -->
+                    <div class="award-group">
+                        <div class="award-year-header">기타 인증 및 선정</div>
+                        <div class="award-items">
+                            <div class="award-item">
+                                <div class="award-badge">인증</div>
+                                <h4 class="award-name">AI-Tech 기업, 기술 인증 (한국인공지능협회)</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">인증</div>
+                                <h4 class="award-name">기술벤처기업 인증 (기술보증기금)</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">설립</div>
+                                <h4 class="award-name">기업부설연구소 설립</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">선정</div>
+                                <h4 class="award-name">현대차정몽구재단 H-온드림 인큐베이팅 사업 7기</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">우수</div>
+                                <h4 class="award-name">청신여대 창업선도대학 우수 졸업 (신기술 부문)</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">선정</div>
+                                <h4 class="award-name">SK플래닛 101 Startup Korea 7기</h4>
+                            </div>
+                            <div class="award-item">
+                                <div class="award-badge">우수</div>
+                                <h4 class="award-name">기보벤처캠프 4기 우수 참여기업</h4>
+                            </div>
+                            <div class="award-item-note">※ 그 외 5차례 수상</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">LEAN AI</h3>
+                <p class="footer-text">회사 소개 내용</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Contact</h3>
+                <p class="footer-text">이메일: </p>
+                <p class="footer-text">전화: </p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">YouTube</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LEAN AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴 토글
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // 탭 전환 함수
+        function showTab(tabName) {
+            // 모든 탭 콘텐츠 숨기기
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 모든 탭 버튼 비활성화
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 선택된 탭 표시
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // 페이지 로드 시 URL 해시 확인
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#awards') {
+                showTab('awards');
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.querySelectorAll('.tab-btn')[0].classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
