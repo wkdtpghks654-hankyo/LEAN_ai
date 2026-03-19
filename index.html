@@ -66,13 +66,36 @@
             color: #06279E;
         }
 
-        .mobile-menu-btn {
+        /* 모바일 메뉴 토글 버튼 */
+        .mobile-menu-toggle {
             display: none;
+            flex-direction: column;
+            gap: 5px;
             background: none;
             border: none;
-            color: #1a1a1a;
-            font-size: 1.5rem;
             cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* 비디오 섹션 */
@@ -389,6 +412,12 @@
             box-shadow: 0 8px 20px rgba(6, 39, 158, 0.3);
         }
 
+        .portfolio-cta-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 0 5vw;
+        }
+
         .portfolio-carousel-wrapper {
             flex: 1;
             overflow: hidden;
@@ -548,9 +577,9 @@
 
         .problems-grid {
             display: grid !important;
-            grid-template-columns: 1fr 1fr 1fr 1fr !important;
-            gap: 1.5rem;
-            max-width: 1400px;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 2rem;
+            max-width: 1000px;
             margin: 0 auto;
             width: 100%;
         }
@@ -1022,9 +1051,12 @@
         /* 팀 섹션 */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+            gap: 2rem;
             margin-top: 4rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .team-card {
@@ -1069,6 +1101,418 @@
             font-size: 0.95rem;
             color: #666;
             line-height: 1.6;
+        }
+
+        /* 프로세스 섹션 */
+        .process-section {
+            padding: 6rem 5vw;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .process-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1600px;
+            margin: 4rem auto 0;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            max-width: 240px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .process-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(6, 39, 158, 0.15);
+            border-color: #06279E;
+        }
+
+        .process-step.highlighted {
+            background: linear-gradient(135deg, #06279E 0%, #0842C9 100%);
+            color: #ffffff;
+            border-color: #06279E;
+        }
+
+        .process-step.highlighted .step-title,
+        .process-step.highlighted .step-desc,
+        .process-step.highlighted .step-number {
+            color: #ffffff;
+        }
+
+        .step-number {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #06279E;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-step.highlighted .step-desc {
+            opacity: 0.95;
+        }
+
+        .step-desc strong {
+            font-weight: 800;
+            color: #06279E;
+        }
+
+        .process-step.highlighted .step-desc strong {
+            color: #FFD700;
+        }
+
+        .step-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .step-badge.exclusive {
+            background: #FFE5E5;
+            color: #D32F2F;
+        }
+
+        .step-badge.fast {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+
+        .process-step.highlighted .step-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .process-arrow {
+            font-size: 2rem;
+            color: #06279E;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .process-cta {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .process-cta-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 고객 사례 섹션 */
+        .testimonials-section {
+            background: #f8f9fa;
+            padding: 6rem 5vw;
+            margin: 0 -5vw;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 4rem auto 0;
+        }
+
+        .testimonial-card {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-icon {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .testimonial-before,
+        .testimonial-after {
+            text-align: center;
+        }
+
+        .testimonial-label {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .testimonial-label.success {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .testimonial-arrow {
+            font-size: 2rem;
+            text-align: center;
+            color: #06279E;
+            font-weight: 700;
+        }
+
+        .testimonial-author {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-company {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 5rem auto 0;
+            padding: 3rem;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #06279E;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* FAQ 섹션 */
+        .faq-section {
+            padding: 6rem 5vw;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 4rem auto 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #06279E;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: #ffffff;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-item.active .faq-question {
+            background: #f0f4ff;
+            color: #06279E;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #06279E;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: #fafafa;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 1.5rem 2rem;
+        }
+
+        .faq-answer p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin: 0;
+        }
+
+        /* 정부지원금 CTA 섹션 */
+        .government-cta-section {
+            margin-top: 6rem;
+            margin-bottom: 0;
+        }
+
+        .government-cta-card {
+            background: linear-gradient(135deg, #06279E 0%, #051E7A 100%);
+            padding: 5rem 4rem;
+            border-radius: 32px;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 20px 60px rgba(6, 39, 158, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .government-cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-badge {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .government-cta-heading {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .government-cta-text {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .feature-icon {
+            font-size: 1.3rem;
+            color: #4CAF50;
+        }
+
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
         }
 
 
@@ -1175,7 +1619,12 @@
         /* 반응형 - 태블릿 */
         @media (max-width: 900px) and (min-width: 601px) {
             .problems-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2rem !important;
             }
 
             .portfolio-section-new {
@@ -1211,36 +1660,123 @@
 
         /* 반응형 - 모바일 */
         @media (max-width: 600px) {
+            /* 헤더 및 네비게이션 */
+            header {
+                padding: 1rem 5vw;
+            }
+
+            .header-container {
+                padding: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex !important;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(6, 39, 158, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav a {
+                color: #ffffff !important;
+                font-size: 1.1rem;
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+            }
+
+            nav a:hover {
+                color: #ffffff !important;
+                background: rgba(255, 255, 255, 0.1);
+                padding-left: 1rem;
+            }
+
+            /* 히어로 섹션 */
+            .hero-video {
+                height: 100vh;
+                min-height: 100vh;
+            }
+
             .hero-heading {
-                font-size: 2.5rem;
+                font-size: 2rem !important;
+                line-height: 1.3;
             }
 
             .hero-subheading {
-                font-size: 1.3rem;
+                font-size: 1.1rem !important;
+            }
+
+            .hero-label {
+                font-size: 0.9rem !important;
+                padding: 0.4rem 1rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .text-highlight {
+                padding: 0.15rem 0.4rem !important;
+                font-size: 0.95em !important;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
+                width: 100%;
             }
 
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 100%;
+                padding: 1rem 2rem;
+                font-size: 1rem;
             }
 
+            /* 메인 콘텐츠 */
             .main-content {
-                padding: 5rem 5vw;
+                padding: 4rem 5vw;
             }
 
             .section {
-                margin-bottom: 6rem;
+                margin-bottom: 5rem;
             }
 
-            /* 포트폴리오 섹션 모바일 */
+            .section-label {
+                font-size: 0.85rem !important;
+            }
+
+            .section-heading {
+                font-size: 1.8rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .section-body {
+                font-size: 1rem !important;
+                margin-bottom: 2.5rem !important;
+            }
+
+            /* 포트폴리오 섹션 */
             .portfolio-section-new {
                 flex-direction: column;
-                gap: 3rem;
+                gap: 2.5rem;
             }
 
             .portfolio-intro {
@@ -1249,7 +1785,11 @@
             }
 
             .portfolio-main-title {
-                font-size: 2rem;
+                font-size: 2rem !important;
+            }
+
+            .portfolio-subtitle {
+                font-size: 1rem !important;
             }
 
             .portfolio-carousel-wrapper {
@@ -1257,139 +1797,134 @@
             }
 
             .portfolio-card {
-                flex: 0 0 300px;
-                width: 300px;
+                flex: 0 0 280px;
+                width: 280px;
             }
 
             .portfolio-image {
-                height: 200px;
+                height: 180px;
                 padding: 1.5rem;
             }
 
             .portfolio-content {
-                padding: 2rem;
+                padding: 1.5rem;
             }
 
             .portfolio-title {
-                font-size: 1.5rem;
-            }
-        }
-
-            .team-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                font-size: 1.3rem !important;
             }
 
-            .partners-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .portfolio-desc {
+                font-size: 0.95rem !important;
             }
 
-            .cta-final-card {
-                padding: 4rem 2rem;
-                border-radius: 24px;
-            }
-
-            .cta-final-heading {
-                font-size: 1.5rem;
-            }
-
-            .cta-final-text {
-                font-size: 1rem;
-            }
-
-            .btn-large {
-                width: 100%;
-                max-width: 100%;
-            }
-
-            nav {
-                gap: 1.5rem;
-            }
-
-            nav a {
-                font-size: 0.9rem;
-            }
-
-            .mobile-menu-btn {
-                display: none;
-            }
-
+            /* 문제점 섹션 */
             .problems-section {
                 padding: 4rem 5vw;
-                margin-top: 6rem;
+                margin-top: 5rem;
             }
 
             .problems-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+                max-width: 100% !important;
             }
 
             .problem-card {
-                min-height: 320px;
-                padding: 2.5rem 1.5rem;
+                min-height: auto !important;
+                padding: 1.5rem 1rem !important;
             }
 
-            .problem-card:hover {
-                transform: scale(1.02);
+            .problem-icon {
+                font-size: 2.5rem !important;
+            }
+
+            .problem-title {
+                font-size: 1.1rem !important;
+                line-height: 1.3 !important;
+            }
+
+            .problem-detail {
+                font-size: 0.85rem !important;
+            }
+
+            .problem-detail li {
+                font-size: 0.85rem !important;
             }
 
             .problems-cta-text {
-                font-size: 1.2rem;
+                font-size: 1.1rem !important;
             }
 
+            /* 솔루션 섹션 */
             .solutions-container {
-                gap: 1.5rem;
-                margin-top: 3rem;
+                gap: 1.2rem;
+                margin-top: 2.5rem;
+                justify-content: flex-start;
             }
 
             .solution-card {
-                flex: 0 0 320px;
-                width: 320px;
-                min-height: 280px;
-                padding: 2.5rem 2rem;
-                gap: 1.5rem;
-            }
-
-            .solution-card:hover {
-                transform: translateY(-8px);
+                flex: 0 0 280px;
+                width: 280px;
+                min-height: 260px;
+                padding: 2rem 1.5rem;
+                gap: 1.2rem;
             }
 
             .solution-icon {
-                font-size: 3.5rem;
+                font-size: 3rem !important;
             }
 
             .solution-title {
-                font-size: 1.6rem;
+                font-size: 1.4rem !important;
             }
 
             .solution-desc {
-                font-size: 1rem;
+                font-size: 0.95rem !important;
             }
 
+            /* Why LEAN AI 섹션 */
             .why-different-section {
                 padding: 4rem 5vw;
             }
 
             .why-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                max-width: 100% !important;
+            }
+
+            .why-card {
+                padding: 2rem 1.5rem !important;
             }
 
             .why-image {
-                aspect-ratio: 1 / 1;
+                aspect-ratio: 16 / 9;
+                height: auto;
             }
 
             .why-title {
-                font-size: 1.3rem;
+                font-size: 1.3rem !important;
+                line-height: 1.3 !important;
+            }
+
+            .why-desc {
+                font-size: 0.95rem !important;
+                line-height: 1.5 !important;
             }
 
             .why-buttons {
                 flex-direction: column;
+                gap: 0.8rem;
             }
 
             .why-btn {
                 text-align: center;
+                font-size: 0.95rem !important;
+                padding: 0.8rem 1.5rem !important;
             }
 
+            /* 파트너 섹션 */
             .partners-grid-compact {
                 grid-template-columns: repeat(3, 1fr) !important;
                 gap: 1rem 0.8rem !important;
@@ -1397,12 +1932,206 @@
             }
 
             .partner-logo-item {
-                padding: 0.4rem !important;
+                padding: 0.5rem !important;
                 max-width: 100px !important;
             }
 
-            .partners-gradient-overlay {
-                height: 80px !important;
+            /* 팀 섹션 */
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1.2rem !important;
+                max-width: 100% !important;
+            }
+
+            .team-card {
+                padding: 1.5rem 1rem !important;
+            }
+
+            .team-image {
+                width: 100px !important;
+                height: 100px !important;
+            }
+
+            .team-name {
+                font-size: 1.1rem !important;
+            }
+
+            .team-role {
+                font-size: 0.85rem !important;
+            }
+
+            .team-bio {
+                font-size: 0.8rem !important;
+                line-height: 1.4 !important;
+            }
+
+            /* 프로세스 섹션 */
+            .process-section {
+                padding: 4rem 5vw;
+            }
+
+            .process-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .process-step {
+                max-width: 100% !important;
+                min-width: 100% !important;
+                padding: 2rem 1.5rem !important;
+            }
+
+            .process-arrow {
+                transform: rotate(90deg);
+                font-size: 1.5rem !important;
+                margin: 0.5rem 0;
+            }
+
+            .step-icon {
+                font-size: 2.5rem !important;
+            }
+
+            .step-title {
+                font-size: 1.2rem !important;
+            }
+
+            .step-desc {
+                font-size: 0.9rem !important;
+            }
+
+            .process-cta {
+                padding: 2rem 1.5rem !important;
+            }
+
+            .process-cta-text {
+                font-size: 1.1rem !important;
+            }
+
+            /* 고객 사례 섹션 */
+            .testimonials-section {
+                padding: 4rem 5vw;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            .testimonial-card {
+                padding: 2rem 1.5rem !important;
+            }
+
+            .testimonial-icon {
+                font-size: 2.5rem !important;
+            }
+
+            .testimonial-text {
+                font-size: 0.95rem !important;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2rem 1.5rem !important;
+                padding: 2rem 1.5rem !important;
+            }
+
+            .stat-number {
+                font-size: 2rem !important;
+            }
+
+            .stat-label {
+                font-size: 0.85rem !important;
+            }
+
+            /* FAQ 섹션 */
+            .faq-section {
+                padding: 4rem 5vw;
+            }
+
+            .faq-question {
+                padding: 1.2rem 1.5rem !important;
+                font-size: 1rem !important;
+            }
+
+            .faq-icon {
+                font-size: 1.3rem !important;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 1.2rem 1.5rem !important;
+            }
+
+            .faq-answer p {
+                font-size: 0.95rem !important;
+            }
+
+            /* 정부지원금 CTA */
+            .government-cta-card {
+                padding: 3rem 2rem !important;
+                border-radius: 24px !important;
+            }
+
+            .cta-badge {
+                font-size: 0.85rem !important;
+                padding: 0.5rem 1.2rem !important;
+            }
+
+            .government-cta-heading {
+                font-size: 1.8rem !important;
+            }
+
+            .government-cta-text {
+                font-size: 1rem !important;
+            }
+
+            .cta-features {
+                flex-direction: column;
+                gap: 1rem !important;
+                align-items: center;
+            }
+
+            .cta-feature {
+                font-size: 1rem !important;
+            }
+
+            /* CTA 섹션 */
+            .cta-final-card {
+                padding: 3rem 1.5rem !important;
+                border-radius: 20px !important;
+            }
+
+            .cta-final-heading {
+                font-size: 1.5rem !important;
+            }
+
+            .cta-final-text {
+                font-size: 1rem !important;
+            }
+
+            .btn-large {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 1.2rem 2rem !important;
+                font-size: 1.1rem !important;
+            }
+
+            /* 푸터 */
+            .footer {
+                padding: 3rem 5vw 1.5rem;
+                margin-top: 5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .footer-title {
+                font-size: 1.2rem !important;
+            }
+
+            .footer-text {
+                font-size: 0.95rem !important;
             }
         }
     </style>
@@ -1412,6 +2141,11 @@
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">LEAN AI</a>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav id="mainNav">
                 <a href="portfolio.html">포트폴리오</a>
                 <a href="#ax">AX</a>
@@ -1447,12 +2181,149 @@
     <!-- 메인 콘텐츠 -->
     <main class="main-content">
 
+        <!-- 협업 기업 섹션 -->
+        <section class="section partners-section">
+            <div class="section-label">Partners</div>
+            <h2 class="section-heading">함께하는 파트너</h2>
+            <p class="section-body">Microsoft, Google 등 빅테크 및 대기업과 협업하여 검증된 기술력을 보여드립니다</p>
+
+            <div class="partners-grid-compact">
+                <div class="partner-logo-item">
+                    <img src="logos/microsoft.png" alt="Microsoft">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/google.png" alt="Google">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/samsung-sds.png" alt="Samsung SDS">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/hyundai-motor-chung.png" alt="현대차정몽구재단">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/postech.png" alt="POSTECH">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/donga-science.png" alt="동아사이언스">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/kaia.png" alt="한국인공지능협회">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/creverse.png" alt="크레버스">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/lchaim.png" alt="르하임">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/sk-innovation.png" alt="SK 이노베이션">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/kibo.png" alt="기술보증기금">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/darae.png" alt="특허법인 다래">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/sba.png" alt="서울경제진흥원">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/seoul-creative.png" alt="서울창조경제혁신센터">
+                </div>
+                <div class="partner-logo-item">
+                    <img src="logos/bk-changong.png" alt="BK 창공">
+                </div>
+            </div>
+        </section>
+
+        <!-- 고객 사례 섹션 -->
+        <section class="section testimonials-section">
+            <div class="section-label">Success Stories</div>
+            <h2 class="section-heading">이런 고민을 하셨던 분들이<br>LEAN AI와 함께 성공했습니다</h2>
+            <p class="section-body">정부지원금을 현명하게 사용하고, 실제 성과를 낸 대표님들의 이야기입니다</p>
+
+            <div class="testimonials-grid">
+                <!-- 사례 카드 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">😰</div>
+                    <div class="testimonial-before">
+                        <span class="testimonial-label">Before</span>
+                        <p class="testimonial-text">"초기창업패키지 1억 받았는데<br>개발업체에 다 날렸어요..."</p>
+                    </div>
+                    <div class="testimonial-arrow">→</div>
+                    <div class="testimonial-after">
+                        <span class="testimonial-label success">After</span>
+                        <p class="testimonial-text">"LEAN AI와 5천만원으로 MVP 완성!<br>후속 투자 3억 유치 성공"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p class="author-name">김** 대표</p>
+                        <p class="author-company">에듀테크 스타트업</p>
+                    </div>
+                </div>
+
+                <!-- 사례 카드 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">😓</div>
+                    <div class="testimonial-before">
+                        <span class="testimonial-label">Before</span>
+                        <p class="testimonial-text">"바이브코딩 업체에 맡겼다가<br>결과물도 못 받았습니다"</p>
+                    </div>
+                    <div class="testimonial-arrow">→</div>
+                    <div class="testimonial-after">
+                        <span class="testimonial-label success">After</span>
+                        <p class="testimonial-text">"3개월만에 제대로 된 서비스 런칭<br>현재 MAU 5,000명 돌파!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p class="author-name">이** 대표</p>
+                        <p class="author-company">헬스케어 플랫폼</p>
+                    </div>
+                </div>
+
+                <!-- 사례 카드 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-icon">💸</div>
+                    <div class="testimonial-before">
+                        <span class="testimonial-label">Before</span>
+                        <p class="testimonial-text">"개발비 2억 달라는데<br>정말 그만큼 필요한가요?"</p>
+                    </div>
+                    <div class="testimonial-arrow">→</div>
+                    <div class="testimonial-after">
+                        <span class="testimonial-label success">After</span>
+                        <p class="testimonial-text">"LEAN AI와 8천만원으로 해결<br>1년 무상 A/S까지 포함!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <p class="author-name">박** 대표</p>
+                        <p class="author-company">커머스 서비스</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 실적 통계 -->
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">정부지원금<br>프로젝트 성공률</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">평균 예산<br>절감률</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">완료<br>프로젝트</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">고객<br>만족도</div>
+                </div>
+            </div>
+        </section>
+
         <!-- 포트폴리오 섹션 -->
         <section class="portfolio-section-new">
             <div class="portfolio-intro">
                 <h2 class="portfolio-main-title">LEAN AI가<br>수행한 프로젝트</h2>
                 <p class="portfolio-subtitle">검증된 기술력으로<br>다양한 프로젝트를 성공적으로 수행했습니다</p>
-                <a href="portfolio.html" class="portfolio-cta-btn">포트폴리오 전체보기 →</a>
             </div>
 
             <div class="portfolio-carousel-wrapper">
@@ -1519,13 +2390,17 @@
 
             </div>
             </div>
+
+            <div class="portfolio-cta-bottom">
+                <a href="portfolio.html" class="portfolio-cta-btn">포트폴리오 전체보기 →</a>
+            </div>
         </section>
 
         <!-- 문제점 섹션 -->
         <section class="section problems-section">
             <div class="section-label">Pain Points</div>
             <h2 class="section-heading">이런 고통을 겪고 계신가요?</h2>
-            <p class="section-body">많은 대표님들이 외주 개발사와 일하며 겪는 공통적인 문제들입니다.</p>
+            <p class="section-body">많은 대표님들이 외주 개발사와<br>일하며 겪는 공통적인 문제들입니다.</p>
 
             <div class="problems-grid">
                 <!-- 문제점 카드 1 -->
@@ -1634,6 +2509,84 @@
             </div>
         </section>
 
+        <!-- 프로세스 섹션 -->
+        <section class="section process-section">
+            <div class="section-label">How We Work</div>
+            <h2 class="section-heading">LEAN AI만의 특별한 프로세스</h2>
+            <p class="section-body">엑싯 경험을 바탕으로 <span class="text-highlight">좋은 제품을 가진 팀만 선별</span>합니다.<br>선정된 팀에게는 투자 유치까지 지원합니다.</p>
+
+            <div class="process-container">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div class="step-number">STEP 1</div>
+                    <div class="step-icon">📋</div>
+                    <h3 class="step-title">사전 설문</h3>
+                    <p class="step-desc">아무나 받지 않습니다.<br>엑싯 경험을 바탕으로 제품 가능성을 평가하고,<br>투자 가치 있는 팀만 선별합니다.</p>
+                    <div class="step-badge exclusive">선별 진행</div>
+                </div>
+
+                <div class="process-arrow">→</div>
+
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div class="step-number">STEP 2</div>
+                    <div class="step-icon">💬</div>
+                    <h3 class="step-title">상담</h3>
+                    <p class="step-desc">선정된 팀만 상담을 진행합니다.<br>프로젝트 범위, 기술 스택,<br>일정을 상세히 논의합니다.</p>
+                    <div class="step-badge">선정 팀만</div>
+                </div>
+
+                <div class="process-arrow">→</div>
+
+                <!-- Step 3 -->
+                <div class="process-step highlighted">
+                    <div class="step-number">STEP 3</div>
+                    <div class="step-icon">⚡</div>
+                    <h3 class="step-title">1일 내 MVP 껍데기</h3>
+                    <p class="step-desc">상담 후 <strong>단 1일 만에</strong><br>MVP 프로토타입을 제공합니다.<br>빠른 비즈니스 검증이 가능합니다.</p>
+                    <div class="step-badge fast">초고속</div>
+                </div>
+
+                <div class="process-arrow">→</div>
+
+                <!-- Step 4 -->
+                <div class="process-step">
+                    <div class="step-number">STEP 4</div>
+                    <div class="step-icon">✍️</div>
+                    <h3 class="step-title">계약 성사</h3>
+                    <p class="step-desc">투명한 견적서를 제공하고<br>정식 계약을 체결합니다.<br>숨겨진 비용은 없습니다.</p>
+                    <div class="step-badge">투명</div>
+                </div>
+
+                <div class="process-arrow">→</div>
+
+                <!-- Step 5 -->
+                <div class="process-step">
+                    <div class="step-number">STEP 5</div>
+                    <div class="step-icon">⚙️</div>
+                    <h3 class="step-title">개발 진행</h3>
+                    <p class="step-desc">전담 개발자를 배정하고<br>2주 단위로 진행 상황을 공유합니다.<br>언제든 소통 가능합니다.</p>
+                    <div class="step-badge">전담 배정</div>
+                </div>
+
+                <div class="process-arrow">→</div>
+
+                <!-- Step 6 -->
+                <div class="process-step highlighted">
+                    <div class="step-number">STEP 6</div>
+                    <div class="step-icon">🚀</div>
+                    <h3 class="step-title">투자 유치 지원</h3>
+                    <p class="step-desc">좋은 제품을 만든 팀은<br><strong>직접 투자자를 연결</strong>해드립니다.<br>단순 개발이 아닌 진짜 파트너십입니다.</p>
+                    <div class="step-badge exclusive">특별 지원</div>
+                </div>
+            </div>
+
+            <div class="process-cta">
+                <p class="process-cta-text">우리 제품도 선정될 수 있을까요?</p>
+                <a href="#" class="btn btn-primary">사전 설문 시작하기</a>
+            </div>
+        </section>
+
         <!-- LEAN AI가 다른 이유 섹션 -->
         <section class="section why-different-section">
             <div class="section-label">Why LEAN AI</div>
@@ -1684,62 +2637,6 @@
             </div>
         </section>
 
-        <!-- 협업 기업 섹션 -->
-        <section class="section partners-section">
-            <div class="section-label">Partners</div>
-            <h2 class="section-heading">함께하는 파트너</h2>
-            <p class="section-body">빅테크 및 대기업과 협업하여 검증된 기술력을 보여드립니다</p>
-
-            <div class="partners-grid-compact">
-                <div class="partner-logo-item">
-                    <img src="logos/microsoft.png" alt="Microsoft">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/google.png" alt="Google">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/samsung-sds.png" alt="Samsung SDS">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/hyundai-motor-chung.png" alt="현대차정몽구재단">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/postech.png" alt="POSTECH">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/donga-science.png" alt="동아사이언스">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/kaia.png" alt="한국인공지능협회">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/creverse.png" alt="크레버스">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/lchaim.png" alt="르하임">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/sk-innovation.png" alt="SK 이노베이션">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/kibo.png" alt="기술보증기금">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/darae.png" alt="특허법인 다래">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/sba.png" alt="서울경제진흥원">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/seoul-creative.png" alt="서울창조경제혁신센터">
-                </div>
-                <div class="partner-logo-item">
-                    <img src="logos/bk-changong.png" alt="BK 창공">
-                </div>
-            </div>
-            <div class="partners-gradient-overlay"></div>
-        </section>
-
         <!-- 팀 소개 섹션 -->
         <section class="section team-section">
             <div class="section-label">Team</div>
@@ -1786,7 +2683,7 @@
                     <p class="team-bio">8개 프로젝트 개발 총괄<br>OSCP 자격증 보유<br>학쫑프로 · 세특여왕 개발</p>
                 </div>
 
-                <!-- 팀원 카드 4 - 이동현 FULL STACK -->
+                <!-- 팀원 카드 5 - 이동현 FULL STACK -->
                 <div class="team-card">
                     <div class="team-image">
                         <div class="image-placeholder">👤</div>
@@ -1796,7 +2693,7 @@
                     <p class="team-bio">고려대학교 영어교육/컴퓨터학과<br>OSCP 자격증 보유<br>7년차 풀스택 개발자</p>
                 </div>
 
-                <!-- 팀원 카드 5 - 백승철 FULL STACK -->
+                <!-- 팀원 카드 6 - 백승철 FULL STACK -->
                 <div class="team-card">
                     <div class="team-image">
                         <div class="image-placeholder">👤</div>
@@ -1806,7 +2703,7 @@
                     <p class="team-bio">고려대학교 영어교육/컴퓨터학과<br>5년차 풀스택 개발자</p>
                 </div>
 
-                <!-- 팀원 카드 6 - 김래현 R&D -->
+                <!-- 팀원 카드 7 - 김래현 R&D -->
                 <div class="team-card">
                     <div class="team-image">
                         <div class="image-placeholder">👤</div>
@@ -1816,7 +2713,7 @@
                     <p class="team-bio">고려대 컴퓨터학과 박사 수료<br>고려대 경영학과 졸업<br>前 모두랩스 강사</p>
                 </div>
 
-                <!-- 팀원 카드 7 - 김가현 AI/백엔드 -->
+                <!-- 팀원 카드 8 - 김가현 AI/백엔드 -->
                 <div class="team-card">
                     <div class="team-image">
                         <div class="image-placeholder">👤</div>
@@ -1828,12 +2725,105 @@
             </div>
         </section>
 
-        <!-- 하단 CTA 섹션 -->
-        <section class="section cta-final-section">
-            <div class="cta-final-card">
-                <h2 class="cta-final-heading">프로젝트를 시작할 준비가 되셨나요?</h2>
-                <p class="cta-final-text">전문가와 상담하고 맞춤형 견적을 받아보세요</p>
-                <a href="#" class="btn btn-primary btn-large">맞춤형 견적 받기</a>
+        <!-- FAQ 섹션 -->
+        <section class="section faq-section">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-heading">자주 묻는 질문</h2>
+            <p class="section-body">외주 개발에 대한 궁금증을 해결해드립니다</p>
+
+            <div class="faq-container">
+                <!-- FAQ 아이템 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>개발비 2억이 정상인가요?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>절대 아닙니다. 프로젝트 규모에 따라 다르지만, 대부분의 MVP는 5천만원~1억 이내로 충분히 개발 가능합니다. LEAN AI는 투명한 견적 산정으로 불필요한 비용을 제거하고, 정부지원금을 효율적으로 사용할 수 있도록 도와드립니다.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 아이템 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>바이브코딩 vs 전문 개발팀, 차이는 뭔가요?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>바이브코딩은 빠르고 저렴하지만, 확장성과 유지보수에 치명적인 문제가 있습니다. 사업이 성장하면 결국 전체를 다시 개발해야 합니다. LEAN AI는 처음부터 확장 가능한 구조로 개발하여 장기적인 비용을 절감하고, 투자 유치에도 유리한 기술 스택을 사용합니다.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 아이템 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>정부지원금을 어떻게 효율적으로 사용하나요?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>LEAN AI는 정부지원금 프로젝트 경험이 풍부합니다. 초기창업패키지, 예비창업패키지 등 다양한 정부지원 과제를 수행했으며, 지원금 규모에 맞는 최적의 개발 범위를 제안드립니다. 불필요한 기능을 제외하고 핵심 기능에 집중하여 예산을 효율적으로 사용합니다.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 아이템 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>개발 후 A/S는 어떻게 되나요?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>프로젝트 완료 후 1년간 무상 A/S를 제공합니다. 버그 수정, 간단한 기능 개선, 서버 모니터링 등을 포함하며, 긴급 상황 시 24시간 내 대응합니다. 운영 중 발생하는 문제에 대해서도 책임지고 해결해드립니다.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 아이템 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>프로젝트 기간은 얼마나 걸리나요?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>MVP(최소기능제품) 기준 평균 2-3개월이 소요됩니다. 프로젝트 규모와 복잡도에 따라 달라지며, 첫 미팅에서 정확한 일정을 안내해드립니다. 정부지원금 과제의 경우 지원금 집행 일정에 맞춰 유연하게 조정 가능합니다.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 아이템 6 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>중간에 요구사항 변경이 가능한가요?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>애자일 방식으로 2주 단위 스프린트를 진행하기 때문에 유연한 변경이 가능합니다. 다만, 대규모 변경은 일정과 비용에 영향을 줄 수 있어 사전 협의가 필요합니다. 정기적인 데모를 통해 방향을 확인하면서 진행합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 정부지원금 특화 CTA 섹션 -->
+        <section class="section government-cta-section">
+            <div class="government-cta-card">
+                <div class="cta-badge">정부지원금 팀 특별 지원</div>
+                <h2 class="government-cta-heading">정부지원금, 현명하게 사용하세요</h2>
+                <p class="government-cta-text">창업부터 엑싯까지 경험한 개발팀과 함께라면<br>성공 확률이 달라집니다</p>
+
+                <div class="cta-features">
+                    <div class="cta-feature">
+                        <span class="feature-icon">✓</span>
+                        <span>투명한 견적 산정</span>
+                    </div>
+                    <div class="cta-feature">
+                        <span class="feature-icon">✓</span>
+                        <span>1년 무상 A/S</span>
+                    </div>
+                    <div class="cta-feature">
+                        <span class="feature-icon">✓</span>
+                        <span>정부과제 경험 다수</span>
+                    </div>
+                </div>
+
+                <a href="#" class="btn btn-primary btn-large">무료 상담 신청하기</a>
+                <p class="cta-note">이달 2팀 한정 무료 컨설팅 진행중</p>
             </div>
         </section>
 
@@ -1889,10 +2879,55 @@
         });
 
         // 모바일 메뉴 토글
-        function toggleMenu() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('active');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+
+            // 메뉴 링크 클릭 시 메뉴 닫기
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+
+            // 메뉴 외부 클릭 시 메뉴 닫기
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickOnToggle = mobileMenuToggle.contains(event.target);
+
+                if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            });
         }
+
+        // FAQ 아코디언
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                // 다른 모든 FAQ 닫기
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // 클릭한 항목 토글
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
 
     </script>
 </body>
